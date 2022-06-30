@@ -1,6 +1,4 @@
-version: 2.1
-orbs:
-  node: circleci/node@4.7.0
+version: 2
 jobs: # we now have TWO jobs, so that a workflow can coordinate them!
   one: # This is our first job.
     docker: # it uses the docker executor
@@ -30,15 +28,3 @@ workflows:
     jobs: # and here we list the jobs we are going to run.
       - one
       - two
-
-
-  build:
-    executor:
-      name: node/default
-      tag: '10.4'
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-      - run: npm run test
